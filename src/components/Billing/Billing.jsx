@@ -3,7 +3,7 @@ import {
   ButtonGroup,
   Card,
   FormLayout,
-  Grid,
+  // Grid,
   Layout,
   Page,
   TextStyle,
@@ -47,7 +47,7 @@ export const Billing = () => {
 
   return (
     <>
-      <Page
+      {/* <Page
         title="Plan"
         breadcrumbs={[{ content: "Products", onAction: () => navigate(-1) }]}
       >
@@ -98,7 +98,7 @@ export const Billing = () => {
             </Layout.AnnotatedSection>
           ))}
         </Layout>
-      </Page>
+      </Page> */}
     </>
   );
 };

@@ -15,11 +15,8 @@ const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
 const PORT = parseInt(process.env.PORT || "8081", 10);
 const isTest = process.env.NODE_ENV === "test" || !!process.env.VITE_TEST_BUILD;
 const app = express();
-<<<<<<< HEAD
-=======
 app.use(express.json());
 
->>>>>>> d92db7b (make it better)
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY,
   API_SECRET_KEY: process.env.SHOPIFY_API_SECRET,
@@ -53,11 +50,8 @@ export async function createServer(
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
 
   applyAuthMiddleware(app);
-<<<<<<< HEAD
-=======
   Config(app);
 
->>>>>>> d92db7b (make it better)
   app.post("/webhooks", async (req, res) => {
     try {
       await Shopify.Webhooks.Registry.process(req, res);
@@ -126,7 +120,7 @@ export async function createServer(
         }
       }
     }
-});
+  });
 
   app.use("/*", (req, res, next) => {
     const { shop } = req.query;

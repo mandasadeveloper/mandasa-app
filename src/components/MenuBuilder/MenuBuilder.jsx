@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-import { Page } from '@shopify/polaris'
-import React from 'react'
-import {Drag} from '../Drag'
-import { CustomeLinkPage } from './customeLinkModel'
-import { CustomePageModel } from './CustomePageModel'
-
-export const MenuBuilder = () => {
-  return (
-  <>
-<Drag/>
-<Page>
-<div style={{display:"flex",justifyContent:"space-between"}}>
-<CustomePageModel/>
-<CustomeLinkPage/>
-</div>
-</Page>
-</>
-  )
-}
-=======
 import { Page, Layout, Card } from "@shopify/polaris";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -96,4 +75,3 @@ export const MenuBuilder = () => {
     </>
   );
 };
->>>>>>> d92db7b (make it better)

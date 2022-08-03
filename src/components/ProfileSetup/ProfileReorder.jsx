@@ -1,6 +1,6 @@
 import React from "react";
 // import { ListContainer, ListItem } from "./styles";
-import { DragHandle } from "./partials/DragHandle";
+// import { DragHandle } from "./partials/DragHandle";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import axios from "axios";
 import { DeleteComponent } from "../DeleteComponent";

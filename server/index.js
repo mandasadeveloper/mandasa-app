@@ -7,7 +7,7 @@ import "dotenv/config";
 // const db = require('./config/db');
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
-import { Config } from "./middleware/db.js";
+// import { Config } from "./middleware/db.js";
 
 const USE_ONLINE_TOKENS = false;
 const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
@@ -50,7 +50,7 @@ export async function createServer(
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
 
   applyAuthMiddleware(app);
-  Config(app);
+  // Config(app);
 
   app.post("/webhooks", async (req, res) => {
     try {

@@ -2,24 +2,30 @@
 import { resolve } from "path";
 import express from "express";
 import cookieParser from "cookie-parser";
-import { Shopify, LATEST_API_VERSION } from "@shopify/shopify-api";
+import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import "dotenv/config";
-
+// const db = require('./config/db');
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
+import { Config } from "./middleware/db.js";
 
-const USE_ONLINE_TOKENS = true;
+const USE_ONLINE_TOKENS = false;
 const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
 
 const PORT = parseInt(process.env.PORT || "8081", 10);
 const isTest = process.env.NODE_ENV === "test" || !!process.env.VITE_TEST_BUILD;
+const app = express();
+<<<<<<< HEAD
+=======
+app.use(express.json());
 
+>>>>>>> d92db7b (make it better)
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY,
   API_SECRET_KEY: process.env.SHOPIFY_API_SECRET,
   SCOPES: process.env.SCOPES.split(","),
   HOST_NAME: process.env.HOST.replace(/https:\/\//, ""),
-  API_VERSION: LATEST_API_VERSION,
+  API_VERSION: ApiVersion.April22,
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
@@ -40,7 +46,6 @@ export async function createServer(
   root = process.cwd(),
   isProd = process.env.NODE_ENV === "production"
 ) {
-  const app = express();
   app.set("top-level-oauth-cookie", TOP_LEVEL_OAUTH_COOKIE);
   app.set("active-shopify-shops", ACTIVE_SHOPIFY_SHOPS);
   app.set("use-online-tokens", USE_ONLINE_TOKENS);
@@ -48,7 +53,11 @@ export async function createServer(
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
 
   applyAuthMiddleware(app);
+<<<<<<< HEAD
+=======
+  Config(app);
 
+>>>>>>> d92db7b (make it better)
   app.post("/webhooks", async (req, res) => {
     try {
       await Shopify.Webhooks.Registry.process(req, res);
@@ -62,11 +71,7 @@ export async function createServer(
   });
 
   app.get("/products-count", verifyRequest(app), async (req, res) => {
-    const session = await Shopify.Utils.loadCurrentSession(
-      req,
-      res,
-      app.get("use-online-tokens")
-    );
+    const session = await Shopify.Utils.loadCurrentSession(req, res, true);
     const { Product } = await import(
       `@shopify/shopify-api/dist/rest-resources/${Shopify.Context.API_VERSION}/index.js`
     );
@@ -83,9 +88,6 @@ export async function createServer(
       res.status(500).send(error.message);
     }
   });
-
-  app.use(express.json());
-
   app.use((req, res, next) => {
     const shop = req.query.shop;
     if (Shopify.Context.IS_EMBEDDED_APP && shop) {
@@ -98,6 +100,33 @@ export async function createServer(
     }
     next();
   });
+
+  app.get("/access-token", async (req, res) => {
+    const session = await Shopify.Utils.loadCurrentSession(
+      req,
+      res,
+      app.get("use-online-tokens")
+    );
+    if (session?.isActive()) {
+      try {
+        // make a request to make sure oauth has succeeded, retry otherwise
+        const client = new Shopify.Clients.Graphql(
+          session.shop,
+          session.accessToken
+        );
+        return client;
+      } catch (e) {
+        if (
+          e instanceof Shopify.Errors.HttpResponseError &&
+          e.response.code === 401
+        ) {
+          // We only want to catch 401s here, anything else should bubble up
+        } else {
+          throw e;
+        }
+      }
+    }
+});
 
   app.use("/*", (req, res, next) => {
     const { shop } = req.query;

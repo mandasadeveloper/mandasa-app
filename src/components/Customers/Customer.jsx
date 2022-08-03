@@ -1,0 +1,259 @@
+<<<<<<< HEAD
+import { Avatar, Button, Card, Page } from '@shopify/polaris'
+import React from 'react'
+
+export const Customer = () => {
+  const customer_review = [
+    "mandasadeveloper@gmail.com",
+    "12 Dec 2000",
+    "Company",
+  ]
+  return (
+    <Page title='Customer'>
+<div style={{display:"flex", justifyContent:"space-between"}}>
+<div style={{width:"49%"}}> 
+       <Card title={<Avatar customer name="Farrah" />}  >
+            <Card.Section title="test test">
+                <p style={{width:"150px"}}>mandsaur, MP, India Customer since 2/16/2017</p>
+            </Card.Section>
+            <Card.Section>
+              <div style={{display:"flex", justifyContent:"space-between"}}>
+                <p style={{width:"100px"}}>Last Order 5/4/2022</p>
+                <p style={{width:"100px"}}>Lifetime Spend  $685.00  2 orders</p>
+                <p style={{width:"100px"}}>Average Order Value $342.50</p>
+              </div>
+            </Card.Section>
+        </Card>
+        <Card>
+
+            <Card.Section title="last order">
+              <div style={{display:"flex", justifyContent:"space-between"}}>
+                <p style={{width:"100px"}}>Order #1024 ulfilled $0.00 </p>
+                <p style={{width:"100px"}}>May 4, 2022 at 10:36 AM</p>
+              </div>
+            </Card.Section>
+            <Card.Section>
+           <div style={{width:"100%"}}> <Button >View All Orders</Button></div>
+            </Card.Section>
+        </Card>
+        </div>
+        <div style={{width:"49%"}}> 
+       <Card>
+            <Card.Section title="Customer Overview">
+            
+            {
+              customer_review.map((ele)=>(
+                <p style={{width:"150px"}}>{ele}</p>
+              ))
+            }
+            </Card.Section>
+            <Card.Section title="DEFAULT ADDRESS">          
+                <p style={{width:"150px"}}> 
+                mandasa technology
+                mandsaur,
+                mandsaur MP 458001
+                India</p>   
+            </Card.Section>
+        </Card>
+
+        <Card>
+            <Card.Section title="Email Marketing">
+            <p>Edit Status</p>
+            <p>Not subscribed</p> 
+            <p>Unsubscribed on December 28, 2018</p>
+            </Card.Section>
+        </Card>
+        </div>
+</div>
+    </Page>
+  )
+}
+=======
+import {
+  Avatar,
+  Button,
+  Card,
+  Page,
+  SkeletonPage,
+  Layout,
+  TextContainer,
+  SkeletonDisplayText,
+  SkeletonBodyText,
+} from "@shopify/polaris";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+export const Customer = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [customer, setCustomer] = useState("");
+  useEffect(() => {
+    getCustomers();
+  }, []);
+  const getCustomers = () => {
+    axios.get(`/get-customer/${id}/?shop=${Shop_name}`).then((response) => {
+      setCustomer(response.data);
+    });
+  };
+
+  return (
+    <Page
+      title="Customer"
+      breadcrumbs={[{ content: "Products", onAction: () => navigate(-1) }]}
+    >
+      {customer !== "" ? (
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ width: "49%" }}>
+            <Card title={<Avatar customer name="Farrah" />}>
+              <Card.Section
+                title={`${
+                  customer.default_address
+                    ? customer.default_address.first_name
+                    : ""
+                } ${
+                  customer.default_address
+                    ? customer.default_address.last_name
+                    : ""
+                }`}
+              >
+                <p style={{ width: "150px" }}>{`${
+                  customer.default_address
+                    ? customer.default_address.first_name
+                    : ""
+                } ${
+                  customer.default_address
+                    ? customer.default_address.last_name
+                    : ""
+                }, ${
+                  customer.default_address
+                    ? customer.default_address.province_code
+                    : ""
+                },${
+                  customer.default_address
+                    ? customer.default_address.country_name
+                    : ""
+                }`}</p>
+              </Card.Section>
+              <Card.Section>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <p>Last Order</p>
+                    <p>5/4/2022</p>
+                  </div>
+                  <p style={{ width: "100px" }}>
+                    Lifetime Spend $685.00 2 orders
+                  </p>
+                  <p style={{ width: "100px" }}>Average Order Value $342.50</p>
+                </div>
+              </Card.Section>
+            </Card>
+            <Card>
+              <Card.Section title="last order">
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <p style={{ width: "100px" }}>Order #1024 ulfilled $0.00 </p>
+                  <p style={{ width: "100px" }}>May 4, 2022 at 10:36 AM</p>
+                </div>
+              </Card.Section>
+              <Card.Section>
+                <div style={{ width: "100%" }}>
+                  {" "}
+                  <Button>View All Orders</Button>
+                </div>
+              </Card.Section>
+            </Card>
+          </div>
+          <div style={{ width: "49%" }}>
+            <Card>
+              <Card.Section title="Customer Overview">
+                <p>{customer.email}</p>
+              </Card.Section>
+              <Card.Section title="DEFAULT ADDRESS">
+                <div>
+                  <p>
+                    {customer.default_address
+                      ? customer.default_address.first_name
+                      : ""}{" "}
+                    {customer.default_address
+                      ? customer.default_address.last_name
+                      : ""}
+                  </p>
+                  <p>
+                    {customer.default_address
+                      ? customer.default_address.company
+                      : ""}
+                  </p>
+                  <p>
+                    {customer.default_address
+                      ? customer.default_address.address1
+                      : ""}
+                  </p>
+                  <p>
+                    {customer.default_address
+                      ? customer.default_address.address2
+                      : ""}
+                  </p>
+                  <div>
+                    <span>
+                      {customer.default_address
+                        ? customer.default_address.zip
+                        : ""}
+                    </span>
+                    <span>
+                      {" "}
+                      {customer.default_address
+                        ? customer.default_address.city
+                        : ""}
+                    </span>
+                    <span>
+                      {" "}
+                      {customer.default_address
+                        ? customer.default_address.province
+                        : ""}
+                    </span>
+                    <span>
+                      {" "}
+                      {customer.default_address
+                        ? customer.default_address.country
+                        : ""}
+                    </span>
+                  </div>
+                  <p>
+                    {customer.default_address
+                      ? customer.default_address.phone
+                      : ""}
+                  </p>
+                </div>
+              </Card.Section>
+            </Card>
+
+            <Card>
+              <Card.Section title="Email Marketing">
+                <p>Edit Status</p>
+                <p>Not subscribed</p>
+                <p>Unsubscribed on December 28, 2018</p>
+              </Card.Section>
+            </Card>
+          </div>
+        </div>
+      ) : (
+        <SkeletonPage>
+          <Layout>
+            <Layout.Section>
+              <Card sectioned>
+                <TextContainer>
+                  <SkeletonDisplayText size="small" />
+                  <SkeletonBodyText lines={9} />
+                </TextContainer>
+              </Card>
+            </Layout.Section>
+          </Layout>
+        </SkeletonPage>
+      )}
+    </Page>
+  );
+};
+>>>>>>> d92db7b (make it better)

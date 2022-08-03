@@ -13,21 +13,38 @@ import { Redirect } from "@shopify/app-bridge/actions";
 import { AppProvider as PolarisProvider } from "@shopify/polaris";
 import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
+<<<<<<< HEAD
+import { FrameDashboard } from "./components/Frame";
+import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./assets/style.css";
+=======
 
 import { HomePage } from "./components/HomePage";
+import { BrowserRouter } from "react-router-dom";
+import { FrameDashboard } from "./components/Frame";
+>>>>>>> d92db7b (make it better)
 
 export default function App() {
-  return (
+return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
         config={{
           apiKey: process.env.SHOPIFY_API_KEY,
-          host: new URL(location.href).searchParams.get("host"),
+          host: new URL(location).searchParams.get("host"),
           forceRedirect: true,
         }}
       >
         <MyProvider>
-          <HomePage />
+<<<<<<< HEAD
+       <BrowserRouter>
+       <FrameDashboard />
+       </BrowserRouter>
+=======
+          <BrowserRouter>
+            <FrameDashboard />
+          </BrowserRouter>
+>>>>>>> d92db7b (make it better)
         </MyProvider>
       </AppBridgeProvider>
     </PolarisProvider>

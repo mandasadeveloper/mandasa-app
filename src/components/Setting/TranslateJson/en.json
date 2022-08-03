@@ -1,0 +1,101 @@
+{
+  "en": [
+    {
+      "0": [
+        { "heading": "My Profile", "value": "My Profile" },
+        { "heading": "Orders", "value": "Orders" },
+        { "heading": "Address", "value": "Address" },
+        { "heading": "Privacy Policy", "value": "Privacy Policy" },
+        { "heading": "Return Policy", "value": "Return Policy" }
+      ],
+      "name": "Navigation"
+    },
+    {
+      "1": [
+        { "heading": "My Profile", "value": "My Profile" },
+        { "heading": "Total Spent", "value": "Total Spent" },
+        { "heading": "Addresses", "value": "Addresses" },
+        { "heading": "All Orders", "value": "All Orders" },
+        { "heading": "Profile Updated", "value": "Profile Updated" }
+      ],
+      "name": "My Profile"
+    },
+    {
+      "2": [
+        { "heading": "Addresses", "value": "Addresses" },
+        { "heading": "Add New Addresses", "value": "Add New Addresses" },
+        { "heading": "All Orders", "value": "All Orders" },
+        { "heading": "Default", "value": "Total Spent" },
+        { "heading": "Make default", "value": "Profile Updated" },
+        {
+          "heading": "Set Us Default Address",
+          "value": "Set Us Default Address"
+        },
+        { "heading": "Address Created", "value": "Address Created" },
+        { "heading": "Address Updated", "value": "Address Updated" },
+        {
+          "heading": "Are You sure you want to delete this Address",
+          "value": "Are You sure you want to delete this Address"
+        },
+        { "heading": "Address Deleted", "value": "Address Deleted" },
+        {
+          "heading": "Default Address Updated",
+          "value": "Default Address Updated"
+        },
+        { "heading": "Delete Address", "value": "Delete Address" }
+      ],
+      "name": "Addresses"
+    },
+    {
+      "3": [
+        { "heading": "Change Password", "value": "Change Password" },
+        { "heading": "New Password", "value": "New Password" },
+        { "heading": "Confirm New Password", "value": "Confirm New Password" },
+        {
+          "heading": "New Password Must be at least 8 Characters",
+          "value": "New Password Must be at least 8 Characters"
+        },
+        {
+          "heading": "The Two Password are not the Same",
+          "value": "The Two Password are not the Same"
+        },
+        {
+          "heading": "Password Updated. Login you  Out",
+          "value": "Password Updated. Login you  Out"
+        }
+      ],
+      "name": "Change Password"
+    },
+    {
+      "4": [
+        { "heading": "Orders", "value": "Orders" },
+        { "heading": "Unfulfilled", "value": "Unfulfilled" },
+        { "heading": "Confirm New Password", "value": "Confirm New Password" },
+        { "heading": "Paid", "value": "Paid" },
+        { "heading": "Billing Address", "value": "Billing Address" },
+        { "heading": "Total Summary", "value": "Total Summary" }
+      ],
+      "name": "Orders"
+    },
+    {
+      "5": [
+        { "heading": "Fulfilled", "value": "Fulfilled" },
+        { "heading": "Unfulfilled", "value": "Unfulfilled" },
+        { "heading": "Partial", "value": "Partial" },
+        { "heading": "Complete", "value": "Complete" },
+        { "heading": "Restocked", "value": "Restocked" }
+      ],
+      "name": "Orders Fullfillment Status"
+    },
+    {
+      "6": [
+        { "heading": "First Name", "value": "First Name" },
+        { "heading": "Last Name", "value": "Last Name" },
+        { "heading": "Email", "value": "Email" },
+        { "heading": "Phone", "value": "Phone" },
+        { "heading": "Submit", "value": "Submit" }
+      ],
+      "name": "Shared"
+    }
+  ]
+}

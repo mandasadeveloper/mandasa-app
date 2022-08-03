@@ -1,5 +1,5 @@
 import React from "react";
-import { ListContainer, ListItem } from "./styles";
+// import { ListContainer, ListItem } from "./styles";
 import { DragHandle } from "./partials/DragHandle";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import axios from "axios";
@@ -43,117 +43,118 @@ const ProfileReorder = (props) => {
           }
         }}
       >
-        <ListContainer>
-          <Droppable droppableId="droppable-1">
-            {(provided, _) => (
-              <div ref={provided.innerRef} {...provided.droppableProps}>
-                {list.map((item, i) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={"draggable-" + item.id}
-                    index={i}
-                  >
-                    {(provided, snapshot) => (
-                      <ListItem
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={{
-                          ...provided.draggableProps.style,
-                          boxShadow: snapshot.isDragging
-                            ? "0 0 .4rem #666"
-                            : "none",
-                        }}
-                      >
-                        <DragHandle {...provided.dragHandleProps} />
-                        <span>{item.title}</span>
-                        {props.status === "additional" ? (
-                          <DeleteComponent
-                            data={props.result}
-                            table="profile_additional_fields"
-                            id={item.key}
-                          />
-                        ) : (
-                          ""
-                        )}
-                        {props.status === "additional" ? (
-                          <EditFields
-                            getAdditionalData={props.result}
-                            table="profile_additional_fields"
-                            id={item.key}
-                          />
-                        ) : (
-                          ""
-                        )}
-                        {item.type === "link" ? (
-                          <span
-                            style={{
-                              width: "20px",
-                              float: "right",
-                              marginLeft: "10px",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <Tooltip content="Link">
-                              <Icon source={LinkMinor} />
-                            </Tooltip>
-                          </span>
-                        ) : (
-                          ""
-                        )}
-                        {item.type === "page" ? (
-                          <span
-                            style={{
-                              float: "right",
-                              marginLeft: "10px",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <Tooltip content="Page">
-                              <Icon source={PageMajor} />
-                            </Tooltip>
-                          </span>
-                        ) : (
-                          ""
-                        )}
-                        {item.type === "page" ? (
-                          <DeleteMenu
-                            value={list}
-                            id={item.id}
-                            getProfileData={getProfileData}
-                          />
-                        ) : item.type === "link" ? (
-                          <DeleteMenu
-                            value={list}
-                            id={item.id}
-                            getProfileData={getProfileData}
-                          />
-                        ) : (
-                          ""
-                        )}
-                        {item.type === "page" ? (
-                          <EditMenu
-                            value={list}
-                            id={i}
-                            getProfileData={getProfileData}
-                          />
-                        ) : item.type === "link" ? (
-                          <EditMenu
-                            value={list}
-                            id={i}
-                            getProfileData={getProfileData}
-                          />
-                        ) : (
-                          ""
-                        )}
-                      </ListItem>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </ListContainer>
+        {/* <ListContainer> */}
+        <Droppable droppableId="droppable-1">
+          {(provided, _) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {list.map((item, i) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={"draggable-" + item.id}
+                  index={i}
+                >
+                  {(provided, snapshot) => (
+                    <></>
+                    // <ListItem
+                    //   ref={provided.innerRef}
+                    //   {...provided.draggableProps}
+                    //   style={{
+                    //     ...provided.draggableProps.style,
+                    //     boxShadow: snapshot.isDragging
+                    //       ? "0 0 .4rem #666"
+                    //       : "none",
+                    //   }}
+                    // >
+                    //   <DragHandle {...provided.dragHandleProps} />
+                    //   <span>{item.title}</span>
+                    //   {props.status === "additional" ? (
+                    //     <DeleteComponent
+                    //       data={props.result}
+                    //       table="profile_additional_fields"
+                    //       id={item.key}
+                    //     />
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    //   {props.status === "additional" ? (
+                    //     <EditFields
+                    //       getAdditionalData={props.result}
+                    //       table="profile_additional_fields"
+                    //       id={item.key}
+                    //     />
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    //   {item.type === "link" ? (
+                    //     <span
+                    //       style={{
+                    //         width: "20px",
+                    //         float: "right",
+                    //         marginLeft: "10px",
+                    //         cursor: "pointer",
+                    //       }}
+                    //     >
+                    //       <Tooltip content="Link">
+                    //         <Icon source={LinkMinor} />
+                    //       </Tooltip>
+                    //     </span>
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    //   {item.type === "page" ? (
+                    //     <span
+                    //       style={{
+                    //         float: "right",
+                    //         marginLeft: "10px",
+                    //         cursor: "pointer",
+                    //       }}
+                    //     >
+                    //       <Tooltip content="Page">
+                    //         <Icon source={PageMajor} />
+                    //       </Tooltip>
+                    //     </span>
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    //   {item.type === "page" ? (
+                    //     <DeleteMenu
+                    //       value={list}
+                    //       id={item.id}
+                    //       getProfileData={getProfileData}
+                    //     />
+                    //   ) : item.type === "link" ? (
+                    //     <DeleteMenu
+                    //       value={list}
+                    //       id={item.id}
+                    //       getProfileData={getProfileData}
+                    //     />
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    //   {item.type === "page" ? (
+                    //     <EditMenu
+                    //       value={list}
+                    //       id={i}
+                    //       getProfileData={getProfileData}
+                    //     />
+                    //   ) : item.type === "link" ? (
+                    //     <EditMenu
+                    //       value={list}
+                    //       id={i}
+                    //       getProfileData={getProfileData}
+                    //     />
+                    //   ) : (
+                    //     ""
+                    //   )}
+                    // </ListItem>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+        {/* </ListContainer> */}
       </DragDropContext>
     </div>
   );
